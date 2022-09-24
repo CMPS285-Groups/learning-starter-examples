@@ -18,4 +18,14 @@ namespace LearningStarter.Entities
         public string PaymentType { get; set; }
         public DateTimeOffset DatePurchased { get; set; }
     }
+
+    public class OrderCreateDto
+    {
+        public string PaymentType { get; set; }
+    }
+
+    public class OrderUpdateDto
+    {
+        public string PaymentType { get; set; }
+    }
 }

@@ -14,8 +14,9 @@ namespace LearningStarter.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<PayRate> PayRates { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .Property(x => x.FirstName)
@@ -32,7 +33,6 @@ namespace LearningStarter.Data
             modelBuilder.Entity<User>()
                 .Property(x => x.Password)
                 .IsRequired();
-
         }
     }
 }
