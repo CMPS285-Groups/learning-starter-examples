@@ -136,6 +136,52 @@ namespace LearningStarter
 
             SeedUsers(dataContext);
             SeedOrders(dataContext);
+            SeedWorkouts(dataContext);
+            SeedUserWorkouts(dataContext);
+        }
+
+        private void SeedUserWorkouts(DataContext dataContext)
+        {
+            if (!dataContext.UserWorkouts.Any())
+            {
+                var user = dataContext.Users.First();
+                var workout1 = dataContext.Workouts.First();
+
+                var seededUserWorkout = new UserWorkout
+                {
+                    User = user,
+                    Workout = workout1,
+                };
+
+                dataContext.UserWorkouts.Add(seededUserWorkout);
+                dataContext.SaveChanges();
+            }
+        }
+
+        private void SeedWorkouts(DataContext dataContext)
+        {
+            var seededWorkoutType = new WorkoutType
+            {
+                Name = "Cardio",
+            };
+
+            if (!dataContext.Workouts.Any())
+            {
+                var seededWorkout1 = new Workout
+                {
+                    Name = "Push-Ups",
+                    WorkoutType = seededWorkoutType,
+                };
+
+                var seededWorkout2 = new Workout
+                {
+                    Name = "Sit-Ups",
+                    WorkoutType = seededWorkoutType,
+                };
+
+                dataContext.Workouts.Add(seededWorkout1);
+                dataContext.Workouts.Add(seededWorkout2);
+            }
         }
 
         private void SeedOrders(DataContext dataContext)
