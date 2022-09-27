@@ -135,6 +135,7 @@ namespace LearningStarter
             });
 
             SeedUsers(dataContext);
+            SeedOrders(dataContext);
             SeedWorkouts(dataContext);
             SeedUserWorkouts(dataContext);
         }
@@ -180,6 +181,40 @@ namespace LearningStarter
 
                 dataContext.Workouts.Add(seededWorkout1);
                 dataContext.Workouts.Add(seededWorkout2);
+            }
+        }
+
+        private void SeedOrders(DataContext dataContext)
+        {
+            if (!dataContext.Orders.Any())
+            {
+                var seededOrder = new Order
+                {
+                    DatePurchased = DateTimeOffset.Now,
+                    PaymentType = "Credit"
+                };
+
+                dataContext.Orders.Add(seededOrder);
+
+                var seededProduct = new Product()
+                {
+                    Cost = 100,
+                    Name = "Beans",
+                    Quantity = 1,
+                };
+
+                dataContext.Products.Add(seededProduct);
+
+                var seededOrderProduct = new OrderProduct
+                {
+                    Order = seededOrder,
+                    Product = seededProduct,
+                    Quantity = 5,
+                    Price = 500,
+                };
+
+                dataContext.OrderProducts.Add(seededOrderProduct);
+
                 dataContext.SaveChanges();
             }
         }
