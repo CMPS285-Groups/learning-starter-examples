@@ -48,6 +48,16 @@ namespace LearningStarter.Controllers
                     Id = order.Id,
                     DatePurchased = order.DatePurchased,
                     PaymentType = order.PaymentType,
+                    Products = order.OrderProducts
+                        .Select(orderProduct => orderProduct.Product)
+                        .Select(product => new ProductGetDto
+                        {
+                            Id = product.Id,
+                            Cost = product.Cost,
+                            Name = product.Name,
+                            Quantity = product.Quantity,
+                        })
+                        .ToList()
                 })
                 .FirstOrDefault(order => order.Id == id);
 

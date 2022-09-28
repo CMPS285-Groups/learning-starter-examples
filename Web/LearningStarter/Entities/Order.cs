@@ -17,6 +17,7 @@ namespace LearningStarter.Entities
         public int Id { get; set; }
         public string PaymentType { get; set; }
         public DateTimeOffset DatePurchased { get; set; }
+        public List<ProductGetDto> Products { get; set; }
     }
 
     public class OrderCreateDto
