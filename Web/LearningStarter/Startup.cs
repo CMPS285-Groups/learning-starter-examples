@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LearningStarter.Data;
@@ -167,20 +168,22 @@ namespace LearningStarter
 
             if (!dataContext.Workouts.Any())
             {
-                var seededWorkout1 = new Workout
+                var workoutsToSeed = new List<Workout>
                 {
-                    Name = "Push-Ups",
-                    WorkoutType = seededWorkoutType,
+                    new Workout
+                    {
+                        Name = "Push-Ups",
+                        WorkoutType = seededWorkoutType,
+                    },
+                    new Workout
+                    {
+                        Name = "Sit-Ups",
+                        WorkoutType = seededWorkoutType,
+                    }
                 };
 
-                var seededWorkout2 = new Workout
-                {
-                    Name = "Sit-Ups",
-                    WorkoutType = seededWorkoutType,
-                };
-
-                dataContext.Workouts.Add(seededWorkout1);
-                dataContext.Workouts.Add(seededWorkout2);
+                dataContext.Workouts.AddRange(workoutsToSeed);
+                dataContext.SaveChanges();
             }
         }
 
