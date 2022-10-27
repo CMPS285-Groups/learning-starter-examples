@@ -24,6 +24,7 @@ namespace LearningStarter.Controllers
 
             var orders = _dataContext
                 .Orders
+                .Where(order => order.PaymentType.ToUpper() != "CASH")
                 .Select(order => new OrderGetDto
                 {
                     Id = order.Id,

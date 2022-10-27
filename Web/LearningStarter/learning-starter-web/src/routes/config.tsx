@@ -5,12 +5,16 @@ import { NotFoundPage } from "../pages/not-found";
 import { useUser } from "../authentication/use-auth";
 import { UserPage } from "../pages/user-page/user-page";
 import { PageWrapper } from "../components/page-wrapper/page-wrapper";
+import { OrderListingPage } from "../pages/orders/orders-listing-page/order-listing-page";
+import { OrderUpdatePage } from "../pages/orders/order-update-page/order-update-page";
 
 //This is where you will declare all of your routes (the ones that show up in the search bar)
 export const routes = {
   root: `/`,
   home: `/home`,
   user: `/user`,
+  order: "/orders",
+  orderUpdate: "/orders/:id",
 };
 
 //This is where you will tell React Router what to render when the path matches the route specified.
@@ -29,6 +33,12 @@ export const Routes = () => {
           {/* When path === /iser render UserPage */}
           <Route path={routes.user} exact>
             <UserPage />
+          </Route>
+          <Route path={routes.order} exact>
+            <OrderListingPage />
+          </Route>
+          <Route path={routes.orderUpdate} exact>
+            <OrderUpdatePage />
           </Route>
           {/* Going to route "localhost:5001/" will go to homepage */}
           <Route path={routes.root} exact>

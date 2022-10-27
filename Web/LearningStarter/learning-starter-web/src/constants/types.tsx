@@ -21,3 +21,13 @@ export type UserDto = {
   lastName: string;
   userName: string;
 };
+
+export type OrderGetDto = {
+  id: number;
+  paymentType: string;
+  datePurchased: Date;
+};
+
+export type OrderUpdateDto = {
+  paymentType: string;
+};

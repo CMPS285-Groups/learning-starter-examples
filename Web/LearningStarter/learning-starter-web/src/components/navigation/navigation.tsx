@@ -46,6 +46,14 @@ const DesktopNavigation = () => {
           to: routes.user,
         },
       },
+      {
+        text: "Orders",
+        icon: "coffee",
+        hide: false,
+        nav: {
+          to: routes.order,
+        },
+      },
     ];
   }, []);
 

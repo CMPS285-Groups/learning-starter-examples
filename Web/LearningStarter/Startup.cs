@@ -137,8 +137,43 @@ namespace LearningStarter
 
             SeedUsers(dataContext);
             SeedOrders(dataContext);
+            SeedProducts(dataContext);
+            SeedOrderProducts(dataContext);
             SeedWorkouts(dataContext);
             SeedUserWorkouts(dataContext);
+        }
+
+        private void SeedOrderProducts(DataContext dataContext)
+        {
+            if (!dataContext.OrderProducts.Any())
+            {
+                var seededOrderProduct = new OrderProduct
+                {
+                    OrderId = 1,
+                    ProductId = 1,
+                    Price = 200,
+                    Quantity = 2,
+                };
+
+                dataContext.OrderProducts.Add(seededOrderProduct);
+                dataContext.SaveChanges();
+            }
+        }
+
+        private void SeedProducts(DataContext dataContext)
+        {
+            if (!dataContext.Products.Any())
+            {
+                var seededProduct = new Product
+                {
+                    Cost = 100,
+                    Name = "GFuel",
+                    Quantity = 20,
+                };
+
+                dataContext.Products.Add(seededProduct);
+                dataContext.SaveChanges();
+            }
         }
 
         private void SeedUserWorkouts(DataContext dataContext)
