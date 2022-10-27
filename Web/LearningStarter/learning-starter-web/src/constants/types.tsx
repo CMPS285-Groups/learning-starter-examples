@@ -25,7 +25,11 @@ export type UserDto = {
 export type OrderGetDto = {
   id: number;
   paymentType: string;
-  datePurchased: Date;
+  datePurchased: string;
+};
+
+export type OrderCreateDto = {
+  paymentType: string;
 };
 
 export type OrderUpdateDto = {

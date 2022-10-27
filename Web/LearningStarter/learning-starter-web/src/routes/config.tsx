@@ -7,6 +7,7 @@ import { UserPage } from "../pages/user-page/user-page";
 import { PageWrapper } from "../components/page-wrapper/page-wrapper";
 import { OrderListingPage } from "../pages/orders/orders-listing-page/order-listing-page";
 import { OrderUpdatePage } from "../pages/orders/order-update-page/order-update-page";
+import { OrderCreatePage } from "../pages/orders/order-create-page/order-create-page";
 
 //This is where you will declare all of your routes (the ones that show up in the search bar)
 export const routes = {
@@ -15,6 +16,7 @@ export const routes = {
   user: `/user`,
   order: "/orders",
   orderUpdate: "/orders/:id",
+  orderCreate: "/orders/create",
 };
 
 //This is where you will tell React Router what to render when the path matches the route specified.
@@ -36,6 +38,9 @@ export const Routes = () => {
           </Route>
           <Route path={routes.order} exact>
             <OrderListingPage />
+          </Route>
+          <Route path={routes.orderCreate} exact>
+            <OrderCreatePage />
           </Route>
           <Route path={routes.orderUpdate} exact>
             <OrderUpdatePage />

@@ -4,6 +4,7 @@ import { Button, Header, Icon, Segment, Tab, Table } from "semantic-ui-react";
 import { ApiResponse, OrderGetDto } from "../../../constants/types";
 import { useHistory } from "react-router-dom";
 import { routes } from "../../../routes/config";
+import moment from "moment";
 
 export const OrderListingPage = () => {
   const [orders, setOrders] = useState<OrderGetDto[]>();
@@ -14,7 +15,6 @@ export const OrderListingPage = () => {
     history.push(routes.home);
   };
 
-  console.log({ orders });
   useEffect(() => {
     const fetchOrders = async () => {
       const { data: response } = await axios.get<ApiResponse<OrderGetDto[]>>(
@@ -37,6 +37,12 @@ export const OrderListingPage = () => {
       {orders && (
         <>
           <Header>Orders</Header>
+          <Button
+            type="button"
+            onClick={() => history.push(routes.orderCreate)}
+          >
+            + Create
+          </Button>
           <Table striped celled>
             <Table.Header>
               <Table.Row>
@@ -49,7 +55,7 @@ export const OrderListingPage = () => {
             <Table.Body>
               {orders.map((order) => {
                 return (
-                  <Table.Row>
+                  <Table.Row key={order.id}>
                     <Table.Cell>
                       <Icon
                         link
@@ -63,7 +69,9 @@ export const OrderListingPage = () => {
                     </Table.Cell>
                     <Table.Cell>{order.id}</Table.Cell>
                     <Table.Cell>{order.paymentType}</Table.Cell>
-                    <Table.Cell>{order.datePurchased}</Table.Cell>
+                    <Table.Cell>
+                      {moment(order.datePurchased).format("MMMM DD YYYY")}
+                    </Table.Cell>
                   </Table.Row>
                 );
               })}
@@ -72,7 +80,6 @@ export const OrderListingPage = () => {
         </>
       )}
       <Button onClick={goHome}>Go Home Nerd</Button>
-      <Button onClick={() => setFilter(!filter)}>Toggle Filter</Button>
     </Segment>
   );
 };
